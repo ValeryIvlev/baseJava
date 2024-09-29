@@ -3,6 +3,7 @@ package com.example.storage;
 import com.example.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 public class ArrayStorage extends AbstractArrayStorage {

@@ -2,8 +2,9 @@ package com.example.storage;
 
 import com.example.exception.ExistStorageException;
 import com.example.exception.NotExistStorageException;
-import com.example.exception.StorageException;
 import com.example.model.Resume;
+
+import java.util.List;
 
 public abstract class AbstractStorage implements Storage {
 
@@ -18,6 +19,8 @@ public abstract class AbstractStorage implements Storage {
     protected abstract Resume doGet(Object searchKey);
 
     protected abstract void doDelete(Object searchKey);
+
+    protected abstract List<Resume> doCopyAll();
 
     public void update(Resume r) {
         Object searchKey = getExistedSearchKey(r.getUuid());
@@ -37,6 +40,10 @@ public abstract class AbstractStorage implements Storage {
     public Resume get(String uuid) {
         Object searchKey = getExistedSearchKey(uuid);
         return doGet(searchKey);
+    }
+
+    public List<Resume> getAllSorted(){
+        return doCopyAll();
     }
 
     private Object getExistedSearchKey(String uuid) {
